@@ -1,96 +1,4 @@
-program as4q1
-    implicit none
-    logical:: F, B, C
-    logical:: R1, R2
-    logical:: is_equivalent
-    integer:: i, j, k
-    logical, dimension(2):: tf_values=(/.true., .false./)
 
-    open(unit=10, file='out4q1.txt', status='replace')
-
-    write(10, '(A)')'======================================================='
-    write(10, '(A)')'TRUTH TABLE FOR HOSPITAL RULE (R1) AND DOCTOR RULE (R2)'
-    write(10, '(A)')'======================================================='
-    write(10, '(A)')'     Fever(F)| Breathing(B)| Chest Pain(C) |   R1    |     R2     '
-    write(10, '(A)')'------------------------------------------------------------------'
-
-    is_equivalent = .true.
-
-        do i=1, 2
-            F = tf_values(i)
-            do j = 1, 2
-                B = tf_values(j)
-                do k = 1, 2
-                    C = tf_values(k)
-
-                    R1 = (F .and. B) .or. (B .and. C) .or. (F .and. C)
-                    R2 = (F .and. B) .or. (C .and.(F .or. B))
-
-                    write(10, '(5(L8, 6X))') F, B, C, R1, R2
-
-                    if (R1 .neqv. R2) then
-                        is_equivalent = .false.
-                    end if
-                end do
-            end do
-        end do
-
-        write(10, '(A)')'--------------------------------------------------------------'
-
-        if(is_equivalent)then
-            write(10,'(A)')'Conclusion: Both rules (R1 and R2) are logically equivalent.'
-        else
-            write(10,'(A)')'Conclusion: The two rules are not logically equivalent.'
-        end if
-        write(10,'(A)')'==========================================================='
-
-        close(10)
-        print*, 'Program successful.'
-        end program as4q1
-
-program as4q2
-    implicit none
-    logical:: W, H, A, B, IFF, is_tautology = .true.
-    integer:: i, j
-    logical, dimension(2):: tf=(/.true., .false./)
-
-    open(unit=10, file='out4q2.txt', status='replace')
-    write(10,'(A)')'===================================================='
-    write(10,'(A)')' Truth table for thermostat rules (A <-> B) '
-    write(10,'(A)')'===================================================='
-    write(10,'(A)')' Warm(W) | Home(A) | Version A | Version B | A <-> B'
-    write(10,'(A)')'----------------------------------------------------'
-
-    do i=1, 2
-        do j= 1, 2
-            W = tf(i)
-            H = tf(j)
-
-            A= W .and. H
-            B= .not.(.not. W .or. .not. H)
-
-            iff= (A .eqv. B)
-
-            if(.not. iff) is_tautology = .false.
-
-            write(10, '(2(L8, 4X),3(L9, 3X))') W, H, A, B, iff
-
-
-            end do
-            end do
-
-            Write(10, '(A)')'------------------------------------------------'
-                if(is_tautology) then
-                    write(10, '(A)')'Conclusion: (A) <-> (B) is Tautology'
-                    else
-                    write(10, '(A)')'Conclusion: (A) <-> (B) is not Tautology'
-             end if
-             write(10, '(A)') '-----------------------------------------------'
-
-             close(10)
-
-             print*, 'program successful.'
-             end program as4q2
 
 program as4q3
     implicit none
@@ -293,7 +201,7 @@ contains
     end function is_prime
 
 end program as4q6
-program tower_vs_mersenne
+program as4q7
     implicit none
 
     integer :: n, H_n, M_n
@@ -350,9 +258,9 @@ contains
         end if
     end function hanoi
 
-end program tower_vs_mersenne
+end program as4q7
 
-program rumor_spread
+program as4q8
     implicit none
 
     integer :: i
@@ -397,7 +305,7 @@ contains
         end if
     end function get_rumor
 
-end program rumor_spread
+end program as4q8
 program as4q9
     implicit none
 
